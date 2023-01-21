@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Edit "{{ user['username'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form action="/update/{{ name_to_update.id }}" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.username.label(class="form-label") }}
+    {{ form.usernamename(class="form-control", value=name_to_update.username) }}
+    <br/>
+    {{ form.email.label(class="form-label") }}
+    {{ form.email(class="form-control", value=name_to_update.email) }}
+  </br>
+    {{ form.branch.label(class="form-label") }}
+    {{ form.branch(class="form-control", value=name_to_update.branch) }}
+    <br/>
+    {{ form.submit(class=btn btn-secondary") }}
+  </form>
+  <hr>
+{% endblock %}

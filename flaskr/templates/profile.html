@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+<br>
+
+{% block content %}
+{% if g.user %}
+<br>
+<div class="card">
+    <div class="card-header">
+        <h3><strong>{{ g.user['username'] }}</strong></h3>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <strong>Email: {{ g.user['email'] }}</strong><br>
+                    <strong>Branch: {{ g.user['branch'] }}</strong><br>
+                    <strong>joined on {{ g.user['joined'].strftime('%d %B, %Y') }}</strong><br><br>
+                    </p>
+                    <a href="{{ url_for('blog.create') }}" class="btn btn-outline-info"><strong>Post</strong></a> <a
+                        href="{{ url_for('auth.update', id=g.user['id']) }}" class="btn btn-warning">update</a> <a
+                        href="{{ url_for('auth.logout') }}" class="btn btn-dark">Logout</a>
+                    <br/><br/>
+                </div>
+                <div class=col-4>
+                    <img src="{{ url_for('static', filename='images/th.jpg') }}" width="200px" align="left">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Your Posts{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+{% for post in posts %}
+    <article class="post">
+        {% if g.user['id'] == post['author_id'] %}    
+            <header>
+                <div>
+                    <h1>{{ post['title'] }}</h1></a>
+                </div>
+                <a href="{{ url_for('blog.update', id=post['id']) }}" class="btn btn-outline-info">Edit</a>
+            </header>
+            <p class="body">{{ post['body'] }}</p><hr>
+            {% endif %}
+    </article>
+
+{% else %}
+    <h3>You have no posts yet</h3><br>
+    <a href="{{ url_for('blog.create') }}" class="btn btn-info">Add a post</a><hr>
+
+{% endfor %}
+
+{% endblock %}
